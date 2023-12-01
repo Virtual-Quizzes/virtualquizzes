@@ -1,30 +1,59 @@
-# React + TypeScript + Vite
+## Documed React App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### Stack 
 
-Currently, two official plugins are available:
+- TypeScript
+- React
+- Redux
+- MUI
+- ESLint
+- Prettier
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Requirements
 
-## Expanding the ESLint configuration
+- Node JS >= v18.17.1   
+- [pnpm] (https://pnpm.io) -> Run in your root: `npm install -g pnpm`
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Getting Started
 
-- Configure the top-level `parserOptions` property like this:
+- Run `pnpm install`
+- Add `.env` (if necessary)
+- Run `pnpm dev`
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+
+### Scripts
+
+| Script        | Description                        |
+| ------------- | ---------------------------------- |
+| pnpm dev      | Runs the application.              |
+| pnpm build    | Create builds for the application. |
+| pnpm preview  | Runs the Vite preview              |
+| pnpm lint     | Display eslint errors              |
+| pnpm lint:fix | Fix the eslint errors              |
+| pnpm format   | Runs prettier for all files        |
+| pnpm test     | Run tests                          |
+
+### Collaboration Rules
+
+Following [Conventional Commit](https://www.conventionalcommits.org/en/v1.0.0/): 
+
+- Format would be type-of-change(scope): [ticket-number] description'. Types would be feat, fix, build, ci, docs, style, refactor, test, etc.
+
+For example:
+feat (student-dashboard): [vq-147] initial setup of the dashboard component
+ 
+### git main branch name update 
+
+Just in case you have main branch as default branch in your local env.
+
+Run:
+- git branch -m main master
+- git fetch origin
+- git branch -u origin/master master
+- git remote set-head origin -a
+
+### Happy coding!
+![image](https://img2.rtve.es/i/?w=1600&i=1614352808020.jpg)
+
+#### Made with <3 by UNMSM
