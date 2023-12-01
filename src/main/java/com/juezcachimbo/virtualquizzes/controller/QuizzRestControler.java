@@ -37,9 +37,9 @@ public class QuizzRestControler {
         return ResponseEntity.ok(savedQuizz);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteQuizz(@PathVariable Long id) {
-        quizzService.deleteQuizz(id);
-        return ResponseEntity.noContent().build();
-    }
+    // @DeleteMapping("/{id}")
+    // public ResponseEntity<Void> deleteQuizz(@PathVariable Long id) {
+        // quizzService.deleteQuizz(id);
+        // return ResponseEntity.noContent().build();
+    //}
 }

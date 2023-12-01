@@ -32,7 +32,8 @@ public class EvaluationRestController {
     }
 
     @PostMapping
-    public ResponseEntity<Evaluation> addBook(@RequestBody Evaluation evaluation) {
+    public ResponseEntity<Evaluation> addBook(@RequestParam int group_id, @RequestParam String quizzes_ids, @RequestParam String name, @RequestParam int score) {
+        Evaluation evaluation = new Evaluation(group_id, quizzes_ids, name, score);
         Evaluation savedBook = evaluationService.saveEvaluation(evaluation);
         return ResponseEntity.ok(savedBook);
     }
