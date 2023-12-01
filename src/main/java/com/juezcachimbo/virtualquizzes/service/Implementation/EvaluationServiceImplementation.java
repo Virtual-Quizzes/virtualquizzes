@@ -25,6 +25,10 @@ public class EvaluationServiceImplementation implements EvaluationService {
 
     @Override
     public Optional<Evaluation> getEvaluationById(Long id) {
+        Optional<Evaluation> evaluation = evaluationRepository.findById(id);
+        if (evaluation.isPresent()) {
+
+        }
         return evaluationRepository.findById(id);
     }
 

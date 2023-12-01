@@ -32,8 +32,7 @@ public class EvaluationRestController {
     }
 
     @PostMapping
-    public ResponseEntity<Evaluation> addBook(@RequestParam int group_id, @RequestParam String quizzes_ids, @RequestParam String name, @RequestParam int score) {
-        Evaluation evaluation = new Evaluation(group_id, quizzes_ids, name, score);
+    public ResponseEntity<Evaluation> addBook(@RequestBody Evaluation evaluation) {
         Evaluation savedBook = evaluationService.saveEvaluation(evaluation);
         return ResponseEntity.ok(savedBook);
     }
@@ -44,8 +43,5 @@ public class EvaluationRestController {
         return ResponseEntity.noContent().build();
     }
 
-    //@GetMapping("/{id}/attemp")
-    //public ResponseEntity<Evaluation> getBookbyId(Long id) {
-        //Optional<Evaluation> evaluation;
-    //}
+
 }
