@@ -1,8 +1,12 @@
 package com.juezcachimbo.virtualquizzes.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
+
+import java.util.List;
 
 @Entity
+@Data
 public class Evaluation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -10,6 +14,9 @@ public class Evaluation {
 
     private String name;
     private int score;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "quizz-id")
+    private List<Quizz> quizzes;
 
     public Evaluation() {
     }
