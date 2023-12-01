@@ -1,4 +1,4 @@
-export type Role = 'ADMIN' | 'COACH' | 'STUDENT';
+export type Role = 'ADMIN' | 'PROFESSOR' | 'STUDENT';
 export type Permission = 'dashboard' | 'quizzes' | 'tests' | 'mygroup' | 'users' | 'settings' | 'profile';
 
 export type RolePermission = {

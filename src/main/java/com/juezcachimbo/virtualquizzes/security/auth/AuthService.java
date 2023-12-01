@@ -65,16 +65,16 @@ public class AuthService {
     public AuthResponse registerProfessor(RegisterRequest request) {
         User user = User.builder()
                 .username(request.getUsername())
-                .password(passwordEncoder.encode( request.getPassword()))
+                .password(passwordEncoder.encode( request.getPassword() ))
                 .firstname(request.getFirstName())
                 .lastname(request.getLastName())
                 .dob(request.getDob())
-                .role(Role.PROFESSOR)
+                .role(Role.ADMIN)
                 .build();
 
         userRepository.save(user);
 
-        return AuthResponse.builder().token(jwtService.getToken(user)).token(null).build();
+        return AuthResponse.builder().token(jwtService.getToken(user)).build();
     }
 
 }

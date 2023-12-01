@@ -6,14 +6,15 @@ import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Typography } from '@mui/material';
+import { Link, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { AuthService } from '@/web/services/auth.service';
 
 export const Login = () => {
   const navigate = useNavigate();
 
   const schema = yup.object().shape({
-    email: yup.string().email().required(),
+    username: yup.string().email().required(),
     password: yup.string().min(6).required(),
   });
 
@@ -27,7 +28,8 @@ export const Login = () => {
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   //@ts-ignore
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
+    const res = await AuthService.login(data);
     console.log(data);
     navigate('/dashboard');
   };
@@ -58,9 +60,9 @@ export const Login = () => {
             required
             fullWidth
             label="Email"
-            {...register('email')}
-            error={!!errors.email}
-            helperText={errors.email?.message}
+            {...register('username')}
+            error={!!errors.username}
+            helperText={errors.username?.message}
           />
           <TextField
             margin="normal"
@@ -75,6 +77,20 @@ export const Login = () => {
           <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
             Ingresar
           </Button>
+          <Box>
+          <Typography sx={{ display: "flex", alignItems: "center"}}>
+      ¿Aún no tienes cuenta?{' '}
+      <Link  
+      component="button"
+        variant="body2"
+        sx={{ ml: 2}}
+        onClick={() => {
+          navigate('/SignUp');
+        }}>
+        Regístrarme
+      </Link>
+    </Typography>
+          </Box>
         </form>
       </Box>
     </Container>
