@@ -1,4 +1,4 @@
-## Documed React App
+## Virtual Quizzes React App
 
 ### Stack 
 

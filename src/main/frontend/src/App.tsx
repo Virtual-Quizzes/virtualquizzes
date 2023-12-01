@@ -1,15 +1,14 @@
-// import { BrowserRouter } from 'react-router-dom';
-// import { CssBaseline } from '@mui/material';
-// import { Routing } from './routes/routing';
+import { BrowserRouter } from 'react-router-dom';
+import { CssBaseline } from '@mui/material';
 import React from 'react';
+import Routing from './routes/routing-v2';
 
 const App = () => {
   return (
-    <></>
-    // <BrowserRouter>
-    //   <CssBaseline />
-    //   {/* <Routing /> */}
-    // </BrowserRouter>
+    <BrowserRouter basename="/">
+      <CssBaseline />
+      <Routing />
+    </BrowserRouter>
   );
 };
 
