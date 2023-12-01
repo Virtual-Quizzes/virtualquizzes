@@ -86,7 +86,13 @@
 			<artifactId>mapstruct</artifactId>
 			<version>1.5.3.Final</version>
 		</dependency>
-	</dependencies>
+	
+   <dependency>
+     <groupId>org.unitime</groupId>
+     <artifactId>cpsolver</artifactId>
+     <version>1.4.24</version>
+   </dependency>
+ </dependencies>
 
 	<build>
 		<plugins>

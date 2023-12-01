@@ -18,7 +18,6 @@ public class EvaluationServiceImplementation implements EvaluationService {
         this.evaluationRepository = evaluationRepository;
     }
 
-
     @Override
     public List<Evaluation> getAllEvaluations() {
         return evaluationRepository.findAll();
