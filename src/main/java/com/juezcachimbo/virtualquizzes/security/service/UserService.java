@@ -1,5 +1,6 @@
 package com.juezcachimbo.virtualquizzes.security.service;
 
+import com.juezcachimbo.virtualquizzes.security.user.Role;
 import com.juezcachimbo.virtualquizzes.security.user.User;
 import com.juezcachimbo.virtualquizzes.security.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,5 +40,9 @@ public class UserService {
 
     public Optional<User> getByUsername(String username) {
         return userRepository.findByUsername(username);
+    }
+
+    public Optional<User> getByRole(Role role) {
+        return userRepository.findByRole(role);
     }
 }

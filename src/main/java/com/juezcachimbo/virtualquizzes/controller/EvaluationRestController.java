@@ -42,6 +42,4 @@ public class EvaluationRestController {
         evaluationService.deleteEvaluation(id);
         return ResponseEntity.noContent().build();
     }
-
-
 }
