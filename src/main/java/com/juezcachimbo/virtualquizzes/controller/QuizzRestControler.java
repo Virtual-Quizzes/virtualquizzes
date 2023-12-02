@@ -19,32 +19,37 @@ public class QuizzRestControler {
         this.quizzService = quizzService;
     }
 
+    // Gets all Quizzes, works fine ✅
     @GetMapping
     public ResponseEntity<List<Quizz>> getAllQuizzes() {
         List<Quizz> quizzes = quizzService.getAllQuizzes();
         return ResponseEntity.ok(quizzes);
     }
 
+    // Gets Quizz by Id, works fine ✅
     @GetMapping("/{id}")
     public ResponseEntity<Quizz> getQuizzById(@PathVariable Long id) {
         Optional<Quizz> quizz = quizzService.getQuizzById(id);
         return quizz.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
+    // Creates Quizz, works fine ✅
     @PostMapping
     public ResponseEntity<Quizz> addQuizz(@RequestBody Quizz quizz) {
         Quizz savedQuizz = quizzService.saveQuizz(quizz);
         return ResponseEntity.ok(savedQuizz);
     }
 
+    // Updates Quizz, works fine ✅
     @PutMapping("/{id}")
     public Quizz updateQuizz(@PathVariable Long id, @RequestBody Quizz updatedQuizz) {
         return ResponseEntity.ok(quizzService.updateQuizz(id, updatedQuizz)).getBody();
     }
 
-    // @DeleteMapping("/{id}")
-    // public ResponseEntity<Void> deleteQuizz(@PathVariable Long id) {
-        // quizzService.deleteQuizz(id);
-        // return ResponseEntity.noContent().build();
-    //}
+    // Deletes quizz, works fine ✅
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteQuizz(@PathVariable Long id) {
+        quizzService.deleteQuizzById(id);
+        return ResponseEntity.noContent().build();
+    }
 }

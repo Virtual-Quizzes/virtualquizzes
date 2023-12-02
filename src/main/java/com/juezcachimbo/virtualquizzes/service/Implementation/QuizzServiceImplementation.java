@@ -34,10 +34,9 @@ public class QuizzServiceImplementation implements QuizzService {
     public Quizz saveQuizz(Quizz quizz) {
         return quizzRepository.save(quizz);
     }
-
     @Override
-    public void deleteQuizz(Long id) {
-        quizzRepository.deleteById(id);
+    public void deleteQuizzById(Long quizzId) {
+        quizzRepository.deleteById(quizzId);
     }
     @Override
     public Quizz updateQuizz(Long id, Quizz quizz) {
