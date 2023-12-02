@@ -12,17 +12,16 @@ import java.util.Optional;
 
 @Entity
 @Data
-@Getter
 public class Evaluation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private int group_id;
+    private long group_id;
     private String name;
     private int score;
-    private int student_id = 0;
+    private long student_id = 0;
     private boolean has_finished = false;
     private long quizz_id;
 }
