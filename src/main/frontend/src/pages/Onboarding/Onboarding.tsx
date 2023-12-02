@@ -3,6 +3,7 @@ import ProfileService from '@/web/services/profile.service';
 import React, { useEffect, useState } from 'react';
 import { StudentOnboarding } from './StudentOnboarding';
 import { ProfessorOnboarding } from './ProfessorOnboarding.tsx';
+import SRoleService from '@/web/services/simulator-rol.service';
 
 export const Onboarding = () => {
 
@@ -11,6 +12,7 @@ export const Onboarding = () => {
   const fecth = async () => {
     const profile = await ProfileService.get();
     setProfile(profile);
+    SRoleService.setRole(profile?.role);
   }
 
   useEffect( () => {
@@ -20,7 +22,7 @@ export const Onboarding = () => {
   if(profile?.role === "STUDENT") return <StudentOnboarding profile={profile} />;
   if(profile?.role === "PROFESSOR") return <ProfessorOnboarding profile={profile} />;
 
-  // return(<StudentOnboarding profile={profile} />)
+   return(<StudentOnboarding profile={profile} />)
 
   return (
     <></>

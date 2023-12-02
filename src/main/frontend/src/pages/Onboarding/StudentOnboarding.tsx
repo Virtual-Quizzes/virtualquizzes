@@ -7,10 +7,9 @@ import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { FormControl, InputLabel, Link, SelectChangeEvent, Typography } from '@mui/material';
+import { FormControl, InputLabel, Link, SelectChangeEvent, Typography, MenuItem, Select } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { AuthService } from '@/web/services/auth.service';
-import { MenuItem, Select } from '@mui/base';
 import Autocomplete from '@mui/material/Autocomplete';
 
 
@@ -62,13 +61,13 @@ const redirectToDashboard = () => {};
   // Select Group 
   // Add Student 
   // then redirectToDashboard
-  const [selectedOption, setSelectedOption] = React.useState<number>();
+  const [selectedOption, setSelectedOption] = React.useState<string>('');
 
 
   const navigate = useNavigate();
  
   const handleChange = (event: SelectChangeEvent) => {
-    setSelectedOption(parseInt(event.target.value as string));
+    setSelectedOption(event.target.value as string);
   };
   
 
@@ -76,9 +75,8 @@ const redirectToDashboard = () => {};
   const selection = async () => {
     try {
       if(selectedOption) {
-        addStudent(selectedOption);
-        navigate('/dashboard');
-      }
+        addStudent(parseInt(selectedOption));
+        navigate('/dashboard');}
     } catch(e) {
 
     }
@@ -106,7 +104,7 @@ const redirectToDashboard = () => {};
         </Typography>
       </Box>
       
-      <FormControl fullWidth>
+      <FormControl fullWidth margin="normal" >
         {/* <InputLabel id="demo-simple-select-label">Grupo</InputLabel> */}
         <Select
           labelId="demo-simple-select-label"

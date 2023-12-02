@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Typography, Stack } from '@mui/material';
 // import { MainContainer } from '@/Layouts/MainContainer';
 import { Grid } from '@mui/material';
@@ -10,6 +10,9 @@ import { IconWrapper } from '@/components/Icons/icon-wrapper';
 import { SxProps } from '@mui/material';
 import { AvatarGroup } from '@mui/material';
 import { Avatar } from '@mui/material';
+import SRoleService from '@/web/services/simulator-rol.service';
+import ProfileService from '@/web/services/profile.service';
+import GroupService from '@/web/services/group.service';
 // import Example from '@/components/stats/StraightAnglePieChart';
 interface Props {
   title?: string;
@@ -81,6 +84,44 @@ const InfoCard = ({ title, children, iconId }: Props) => {
 };
 
 const Dashboard = () => {
+
+  const role = SRoleService.getRole();
+
+  async function getGroups() {
+    const groups = await GroupService.get();
+    setGroups( groups );
+  }
+
+  const [ profile, setProfile ] = useState<any>();
+  const [ groups, setGroups ] = useState<any>();
+  const [ cr, setCr ] = useState<any>(role);
+"student_ids"
+
+  const isPro = cr === "PROFESSOR";
+
+  const fecth = async () => {
+    try {
+      const profile = await ProfileService.get();
+      setProfile(profile);
+      setCr(profile?.role)
+    } catch (error) {
+      setProfile({
+        firstname: isPro ? "Maestro" : "Estudiante",
+        id: profile?.id
+      });
+    }
+ 
+  }
+
+  const currentId = [profile?.id];  // Reemplaza [your_id_here] con tu ID
+  const resultObject = groups?.find((obj: any) => obj?.student_ids?.includes(currentId));
+
+  useEffect( () => {
+    fecth().then()
+    getGroups().then()
+  }, []);
+
+
   return (
     <>
       <Grid container spacing={2} mt={2}>
@@ -97,12 +138,26 @@ const Dashboard = () => {
                 alignItems={'flex-start'}
                 justifyContent={'center'}
               >
-                <Typography variant="h2" fontWeight={800} component="div" gutterBottom>
-                  Hola, {'Peter'}!
-                </Typography>
-                <Typography variant="body1" component="div" gutterBottom>
-                  Tiene {3} evaluaciones pendientes. Así que Manos a la obra!
-                </Typography>
+                {isPro ?
+                (
+                  <>
+                    <Typography variant="h2" fontWeight={800} component="div" gutterBottom>
+                      Hola, {profile?.firstname}!
+                    </Typography>
+                    <Typography variant="body1" component="div" gutterBottom>
+                      Empiece el día creando nuevas evaluaciones. Manos a la obra!
+                    </Typography>
+                  </>
+                ): (
+                  <>
+                  <Typography variant="h2" fontWeight={800} component="div" gutterBottom>
+                    Hola, {profile?.firstname}!
+                  </Typography>
+                  <Typography variant="body1" component="div" gutterBottom>
+                    Tiene {1} evaluacion nueva pendiente. Así que Manos a la obra!
+                  </Typography>
+                </>
+                )}
                 <Button variant="contained" sx={{ mt: 2 }}>
                   Comenzar
                 </Button>
@@ -132,7 +187,7 @@ const Dashboard = () => {
                       Grupo
                     </Typography>
                     <Typography variant="body1" component="div" gutterBottom>
-                      Los Bandidos FC
+                      {resultObject?.name}
                     </Typography>
                   </Box>
                   <AvatarGroup max={4}>
@@ -158,7 +213,7 @@ const Dashboard = () => {
                       Profesor
                     </Typography>
                     <Typography variant="body1" component="div" gutterBottom>
-                      Doctor Octopus
+                     {isPro ?  profile?.firstName : "Alberto Neyra" }
                     </Typography>
                   </Box>
                   <Avatar alt="Trevor Henderson" src="https://mui.com/static/images/avatar/1.jpg" />

@@ -7,6 +7,10 @@ import { CreateTestPage, TestHome } from '@/pages/Tests';
 import { Groups } from '@/pages/Groups';
 import { ForgotPassword, Login, SignUp } from '@/pages/Auth';
 import { AuthLayout } from '@/Layouts/AuthLayout';
+import { OnboardingLayout } from '@/Layouts/OnboardingLayout';
+import { Onboarding } from '@/pages/Onboarding';
+import { AviablePage } from '@/pages/Tests/Aviable';
+import { AtempPage } from '@/pages/Tests/Atemp';
 
 // const createRoutesFromConfig = (routes: RouteConfig[]) => {
 //   return routes.map((route) => {
@@ -41,7 +45,12 @@ const Routing = () => {
         <Route path="quizzes" element={<QuizHome />} />
         <Route path="tests" element={<TestHome />} />
         <Route path="tests/new" element={<CreateTestPage />} />
-        <Route path="groups" element={<Groups />} />
+        <Route path="evaluations" element={<AviablePage />} />
+        <Route path="evaluations/attempt/:pruebaId" element={<AtempPage />} />
+      </Route>
+
+      <Route element={<OnboardingLayout />}>
+        <Route path="onboarding" element={<Onboarding />} />
       </Route>
 
       <Route path="*" element={<h1>404</h1>} />

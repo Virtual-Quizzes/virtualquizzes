@@ -17,9 +17,12 @@ import { Typography } from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import ProfileService from '@/web/services/profile.service';
 
 export function AccountMenu() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [profile, setProfile] = React.useState<any>();
+
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -31,6 +34,21 @@ export function AccountMenu() {
   const navigate = useNavigate();
 
   const goToLogin = () => navigate('/');
+  const fecth = async () => {
+    try {
+      const profile = await ProfileService.get();
+      setProfile(profile);
+    } catch (error) {
+  
+    }
+ 
+  }
+
+  
+  React.useEffect( () => {
+    fecth().then()
+  }, []);
+
 
   return (
     <React.Fragment>
@@ -53,10 +71,10 @@ export function AccountMenu() {
             textAlign: 'center',
           }}
         >
-          <Avatar sx={{ width: 36, height: 36 }}>PP</Avatar>
+          <Avatar sx={{ width: 36, height: 36 }}>{profile?.firstname?.substring(0,1)}{profile?.lastname?.substring(0,1)}</Avatar>
           <Box ml={1} sx={{ display: { xs: 'none', sm: 'block' } }}>
             <Typography variant="body1" color={'black'}>
-              Peter Parker
+              {profile?.firstname}  {profile?.lastname}
             </Typography>
           </Box>
         </Box>
