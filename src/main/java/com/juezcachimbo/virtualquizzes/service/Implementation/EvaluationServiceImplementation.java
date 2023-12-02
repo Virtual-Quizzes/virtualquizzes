@@ -42,11 +42,11 @@ public class EvaluationServiceImplementation implements EvaluationService {
 
     @Override
     public Evaluation attempt(Long id, EvaluationRequest evaluationRequest) {
-        Optional<Evaluation> currentEvaluation = evaluationRepository.findById(evaluationRequest.getQuizz_id());
-        Long targetQuizzId = currentEvaluation.get().getQuizz_id();
+
+        Optional<Evaluation> currentEvaluation = evaluationRepository.findById(id);
 
         // Obtener el Quizz asociado a la evaluación actual
-        Optional<Quizz> quizz = quizzRepository.findById(targetQuizzId);
+        Optional<Quizz> quizz = quizzRepository.findById(evaluationRequest.getQuizz_id());
 
         // Obtener las preguntas del quizz
         List<Question> quizzQuestions = quizz.get().getQuestions();
