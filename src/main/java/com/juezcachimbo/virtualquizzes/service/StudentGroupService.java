@@ -18,5 +18,5 @@ public interface StudentGroupService {
 
     List<Optional<User>> getStudents(List<Long> ids);
 
-    void addStudents(List<Long> ids, Long groupId);
+    StudentGroup addStudents(List<Long> ids, Long groupId);
 }

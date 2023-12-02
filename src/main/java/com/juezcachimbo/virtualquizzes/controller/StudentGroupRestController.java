@@ -59,13 +59,8 @@ public class StudentGroupRestController {
         return ResponseEntity.ok(students);
     }
 
-    @PostMapping("/{id}/addStudents")
-    public ResponseEntity<StudentGroup> addStudents(@RequestBody JsonArray ids, @PathVariable Long id) {
-        Optional<StudentGroup> group = groupService.getGroupById(id);
-        if (group.isPresent()) {
-            groupService.addStudents(ids.getIds(), id);
-            return ResponseEntity.ok(group.get());
-        }
-        return ResponseEntity.notFound().build();
+    @PutMapping("/{id}/addStudents")
+    public StudentGroup addStudents(@RequestBody JsonArray ids, @PathVariable Long id) {
+        return ResponseEntity.ok(groupService.addStudents(ids.getIds(), id)).getBody();
     }
 }

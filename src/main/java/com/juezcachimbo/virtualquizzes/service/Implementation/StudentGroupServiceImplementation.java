@@ -56,16 +56,19 @@ public class StudentGroupServiceImplementation implements StudentGroupService {
     }
 
     @Override
-    public void addStudents(List<Long> ids, Long groupId) {
-        //Optional<StudentGroup> group = groupRepository.findById(groupId);
-        //if (group.isPresent()) {
-            //for (Long id: ids) {
-                //if (userRepository.findById(id).isPresent() && userRepository.findById(id).get().getRole() == Role.STUDENT) {
-                    //group.get().addStudent(id);
-                //}
-            //}
-            //deleteGroup(groupId);
-            //saveGroup(group.get());
-        //}
+    public StudentGroup addStudents(List<Long> ids, Long groupId) {
+        StudentGroup group = groupRepository.findById(groupId).orElse(null);
+        assert group != null;
+        List<Long> newIds = group.getStudent_ids();
+        for (Long id : ids) {
+            if (userRepository.findById(id).isPresent() && userRepository.findById(id).get().getRole() == Role.STUDENT) {
+                newIds.add(id);
+            }
+        }
+
+        assert group != null;
+        group.setStudent_ids(newIds);
+
+        return groupRepository.save(group);
     }
 }
