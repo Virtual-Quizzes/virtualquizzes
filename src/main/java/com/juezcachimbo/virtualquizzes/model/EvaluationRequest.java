@@ -11,7 +11,7 @@ import java.util.List;
 @Getter
 public class EvaluationRequest {
 
-    private Long evaluation_id;
+    private Long quizz_id;
     private List<QuestionUserResponse> user_response;
 
 }

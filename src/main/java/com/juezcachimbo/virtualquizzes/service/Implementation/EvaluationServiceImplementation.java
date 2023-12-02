@@ -36,13 +36,13 @@ public class EvaluationServiceImplementation implements EvaluationService {
     }
 
     @Override
-    public Evaluation saveEvaluation(Evaluation book) {
-        return evaluationRepository.save(book);
+    public Evaluation saveEvaluation(Evaluation evaluation) {
+        return evaluationRepository.save(evaluation);
     }
 
     @Override
     public Evaluation attempt(Long id, EvaluationRequest evaluationRequest) {
-        Optional<Evaluation> currentEvaluation = evaluationRepository.findById(evaluationRequest.getEvaluation_id());
+        Optional<Evaluation> currentEvaluation = evaluationRepository.findById(evaluationRequest.getQuizz_id());
         Long targetQuizzId = currentEvaluation.get().getQuizz_id();
 
         // Obtener el Quizz asociado a la evaluación actual
