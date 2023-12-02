@@ -69,7 +69,7 @@ public class AuthService {
                 .firstname(request.getFirstName())
                 .lastname(request.getLastName())
                 .dob(request.getDob())
-                .role(Role.ADMIN)
+                .role(Role.PROFESSOR)
                 .build();
 
         userRepository.save(user);
