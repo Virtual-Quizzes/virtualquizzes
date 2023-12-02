@@ -2,8 +2,10 @@
 
 import { AuthLayout } from "@/Layouts/AuthLayout";
 import { MainContainer } from "@/Layouts/MainContainer";
+import { OnboardingLayout } from "@/Layouts/OnboardingLayout";
 import { Login, SignUp } from "@/pages/Auth";
 import Dashboard from "@/pages/Dashboard/Dashboard";
+import { Onboarding } from "@/pages/Onboarding";
 import { flattenConfig } from "@/utils/routes.util";
 
 // import { MainContainer } from '@/layouts/Containers/MainContainer';
@@ -90,6 +92,48 @@ export const config = [
         path: '/dashboard',
         isPrivate: true,
         sidebar: true,
+      },
+      // {
+      //   id: 'scheduled-appointments',
+      //   title: 'Citas',
+      //   element: <Sheduled />,
+      //   path: '/scheduled-appointments',
+      //   sidebar: true,
+      //   isPrivate: false,
+      //   iconId: 'REMIXscheduled',
+      // },
+      // {
+      //   id: 'user-management',
+      //   title: 'Usuarios',
+      //   element: <UserMngt />,
+      //   path: '/user-management',
+      //   sidebar: true,
+      //   isPrivate: false,
+      //   iconId: 'REMIXusers',
+      // },
+      // {
+      //   id: 'consultation',
+      //   title: 'Consulta',
+      //   element: <Consultation />,
+      //   path: '/consultation',
+      //   sidebar: true,
+      //   isPrivate: false,
+      //   iconId: 'REMIXconsultation',
+      // },
+    ],
+  },
+  {
+    id: 'onboarding-container',
+    element: <OnboardingLayout />,
+    type: RouteNodeType.LAYOUT,
+    children: [
+      {
+        id: 'onboarding',
+        title: 'Onboarding',
+        element: <Onboarding />,
+        path: '/onboarding',
+        isPrivate: true,
+        sidebar: false,
       },
       // {
       //   id: 'scheduled-appointments',

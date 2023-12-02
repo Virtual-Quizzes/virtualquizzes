@@ -13,6 +13,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/users")
+@CrossOrigin( origins = { "http://localhost:8080", "http://localhost:5173" })
 public class UserRestController {
 
     private final UserService userService;
@@ -33,6 +34,7 @@ public class UserRestController {
     }
 
     @GetMapping("/profile")
+    @CrossOrigin("*")
     public ResponseEntity<Optional<User>> getProfile(Principal principal) {
         String username = principal.getName();
         Optional<User> user = userService.getByUsername(username);

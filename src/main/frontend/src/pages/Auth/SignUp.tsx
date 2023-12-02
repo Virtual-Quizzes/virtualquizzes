@@ -63,7 +63,7 @@ export const SignUp = () => {
     console.log(formatted);
     const res = await AuthService.signup(data);
     console.log(res);
-    navigate('/dashboard');
+    navigate('/onboarding');
   };
 
   return (
@@ -183,7 +183,7 @@ export const SignUp = () => {
         variant="body2"
         sx={{ ml: 2}}
         onClick={() => {
-          navigate('/SignUp');
+          navigate('/');
         }}>
         Iniciar Sesión
       </Link>

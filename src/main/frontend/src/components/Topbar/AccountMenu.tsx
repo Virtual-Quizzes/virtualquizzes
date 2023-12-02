@@ -30,7 +30,7 @@ export function AccountMenu() {
 
   const navigate = useNavigate();
 
-  const goToLogin = () => navigate('/login');
+  const goToLogin = () => navigate('/');
 
   return (
     <React.Fragment>

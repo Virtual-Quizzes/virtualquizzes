@@ -14,6 +14,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/studentgroups")
+@CrossOrigin( origins = { "http://localhost:8080", "http://localhost:5173" })
 public class StudentGroupRestController {
 
     private final StudentGroupService groupService;

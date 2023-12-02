@@ -16,6 +16,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/evaluations")
+@CrossOrigin( origins = { "http://localhost:8080", "http://localhost:5173" })
 public class EvaluationRestController {
     private final EvaluationService evaluationService;
     private final StudentGroupService groupService;
