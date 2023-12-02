@@ -12,9 +12,9 @@ public class Question {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private String text;
+    private String question_text;
     @ElementCollection
     private List<String> options;
     private char correctAnswer;
-    private String reason;
+    private String reasoning;
 }

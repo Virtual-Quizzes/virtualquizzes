@@ -13,4 +13,5 @@ public interface QuizzService {
     Quizz saveQuizz(Quizz quizz);
 
     void deleteQuizz(Long id);
+    Quizz updateQuizz(Long id, Quizz quizz);
 }

@@ -37,6 +37,11 @@ public class QuizzRestControler {
         return ResponseEntity.ok(savedQuizz);
     }
 
+    @PutMapping("/{id}")
+    public Quizz updateQuizz(@PathVariable Long id, @RequestBody Quizz updatedQuizz) {
+        return ResponseEntity.ok(quizzService.updateQuizz(id, updatedQuizz)).getBody();
+    }
+
     // @DeleteMapping("/{id}")
     // public ResponseEntity<Void> deleteQuizz(@PathVariable Long id) {
         // quizzService.deleteQuizz(id);

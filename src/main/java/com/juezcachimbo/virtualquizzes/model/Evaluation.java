@@ -5,12 +5,14 @@ import com.juezcachimbo.virtualquizzes.service.Implementation.QuizzServiceImplem
 import com.juezcachimbo.virtualquizzes.service.QuizzService;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
 
 import java.util.List;
 import java.util.Optional;
 
 @Entity
 @Data
+@Getter
 public class Evaluation {
 
     @Id
@@ -21,9 +23,6 @@ public class Evaluation {
     private String name;
     private int score;
     private int student_id = 0;
-    @ElementCollection
-    private List<Integer> quizzes_ids;
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Quizz> quizzes;
+    private boolean has_finished = false;
+    private long quizz_id;
 }
