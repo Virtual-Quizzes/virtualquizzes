@@ -17,4 +17,6 @@ public interface StudentGroupService {
     void deleteGroup(Long id);
 
     List<Optional<User>> getStudents(List<Long> ids);
+
+    void addStudents(List<Long> ids, Long groupId);
 }

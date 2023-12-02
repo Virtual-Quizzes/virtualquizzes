@@ -1,11 +1,10 @@
 package com.juezcachimbo.virtualquizzes.controller;
 
+import com.juezcachimbo.virtualquizzes.model.JsonArray;
 import com.juezcachimbo.virtualquizzes.model.StudentGroup;
 import com.juezcachimbo.virtualquizzes.security.user.User;
-import com.juezcachimbo.virtualquizzes.service.Implementation.StudentGroupImplementation;
 import com.juezcachimbo.virtualquizzes.service.StudentGroupService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -58,5 +57,15 @@ public class StudentGroupRestController {
 
         List<Optional<User>> students = groupService.getStudents(ids);
         return ResponseEntity.ok(students);
+    }
+
+    @PostMapping("/{id}/addStudents")
+    public ResponseEntity<StudentGroup> addStudents(@RequestBody JsonArray ids, @PathVariable Long id) {
+        Optional<StudentGroup> group = groupService.getGroupById(id);
+        if (group.isPresent()) {
+            groupService.addStudents(ids.getIds(), id);
+            return ResponseEntity.ok(group.get());
+        }
+        return ResponseEntity.notFound().build();
     }
 }

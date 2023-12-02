@@ -19,7 +19,7 @@ public class StudentGroup {
     @ElementCollection
     private List<Long> student_ids;
 
-    //public List<Long> getStudentIds() {
-        //return this.student_ids;
-    //}
+    public void addStudent(Long id) {
+        student_ids.add(id);
+    }
 }

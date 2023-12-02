@@ -2,6 +2,7 @@ package com.juezcachimbo.virtualquizzes.service.Implementation;
 
 import com.juezcachimbo.virtualquizzes.model.StudentGroup;
 import com.juezcachimbo.virtualquizzes.repository.StudentGroupRepository;
+import com.juezcachimbo.virtualquizzes.security.user.Role;
 import com.juezcachimbo.virtualquizzes.security.user.User;
 import com.juezcachimbo.virtualquizzes.security.user.UserRepository;
 import com.juezcachimbo.virtualquizzes.service.StudentGroupService;
@@ -13,13 +14,13 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class StudentGroupImplementation implements StudentGroupService {
+public class StudentGroupServiceImplementation implements StudentGroupService {
 
     private final StudentGroupRepository groupRepository;
     private final UserRepository userRepository;
 
     @Autowired
-    public StudentGroupImplementation(StudentGroupRepository groupRepository, UserRepository userRepository) {
+    public StudentGroupServiceImplementation(StudentGroupRepository groupRepository, UserRepository userRepository) {
         this.groupRepository = groupRepository;
         this.userRepository = userRepository;
     }
@@ -52,5 +53,19 @@ public class StudentGroupImplementation implements StudentGroupService {
                 users.add(userRepository.findById(id));
         }
         return users;
+    }
+
+    @Override
+    public void addStudents(List<Long> ids, Long groupId) {
+        //Optional<StudentGroup> group = groupRepository.findById(groupId);
+        //if (group.isPresent()) {
+            //for (Long id: ids) {
+                //if (userRepository.findById(id).isPresent() && userRepository.findById(id).get().getRole() == Role.STUDENT) {
+                    //group.get().addStudent(id);
+                //}
+            //}
+            //deleteGroup(groupId);
+            //saveGroup(group.get());
+        //}
     }
 }
