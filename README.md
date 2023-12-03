@@ -15,7 +15,7 @@ Para configurar tu entorno de desarrollo local, sigue estos pasos:
 
 1. Clona el repositorio de Juez Cachimbo:
 
-   https://github.com/tu-usuario/juez-cachimbo.git
+   [https://github.com/tu-usuario/juez-cachimbo.git](https://github.com/Virtual-Quizzes/virtualquizzes)
 
    rama ( stable )
 
