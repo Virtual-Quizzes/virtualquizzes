@@ -3,10 +3,19 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Paper, Typography, List, ListItem, RadioGroup, FormControlLabel, Radio, Button } from '@mui/material';
 import { obtenerPruebaPorId, Prueba } from './MockData'; // Asegúrate de que la ruta de importación sea correcta
+import { useNavigate } from 'react-router-dom';
+import { Succesull } from "./s";
 
 export const AtempPage = () => {
     const [prueba, setPrueba] = useState<Prueba | null>(null);
     const { pruebaId } = useParams<{ pruebaId: string }>();
+    const navigate = useNavigate();
+
+    const [isTestCompleted, setIsTestCompleted] = useState(false);
+
+    const handleTestCompletion = () => {
+        setIsTestCompleted(true);
+    };
 
     useEffect(() => {
         //@ts-ignore
@@ -23,8 +32,18 @@ export const AtempPage = () => {
     };
 
     const handleSubmit = () => {
-        // Agregar lógica para enviar respuestas
+        handleTestCompletion()
     };
+
+    const handleReturn = () => {
+        // Lógica para volver al inicio o a otra pantalla
+    };
+
+   if(isTestCompleted) {
+
+        return ( <Succesull onReturn={handleReturn} />)
+
+    }
 
     return (
         <Paper style={{ maxWidth: "100%", margin: 'auto', marginTop: 20, marginBottom: 20, padding: '20px' }}>
@@ -50,4 +69,5 @@ export const AtempPage = () => {
             </Button>
         </Paper>
     );
+
 };

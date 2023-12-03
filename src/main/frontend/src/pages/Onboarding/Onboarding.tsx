@@ -4,6 +4,8 @@ import React, { useEffect, useState } from 'react';
 import { StudentOnboarding } from './StudentOnboarding';
 import { ProfessorOnboarding } from './ProfessorOnboarding.tsx';
 import SRoleService from '@/web/services/simulator-rol.service';
+import { pruebasMockeadas } from '../Tests/MockData';
+import { LService } from '@/web/services/localstorage.service';
 
 export const Onboarding = () => {
 
@@ -17,7 +19,11 @@ export const Onboarding = () => {
 
   useEffect( () => {
     fecth().then()
+    if(profile?.role === "PROFESSOR") LService.saveItemsToLocalStorage(pruebasMockeadas)
   }, []);
+
+  
+
 
   if(profile?.role === "STUDENT") return <StudentOnboarding profile={profile} />;
   if(profile?.role === "PROFESSOR") return <ProfessorOnboarding profile={profile} />;

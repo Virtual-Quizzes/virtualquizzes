@@ -1,9 +1,27 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { TextField, Button, Select, MenuItem, InputLabel, FormControl, Typography } from '@mui/material';
+import QuizzService from '@/web/services/quizz.service';
 
-const EvaluationForm = ({ quizzes, onSave }: any) => {
+
+const EvaluationForm = ({ quizzes: initial, onSave }: any) => {
     const [name, setName] = useState('');
     const [selectedQuizId, setSelectedQuizId] = useState('');
+
+    const [quizzes, setQuizzes] = useState(initial);
+
+    const fecth = async () => {
+        try {
+          const quizzes = await QuizzService.get();
+          setQuizzes(quizzes);
+        } catch (error) {
+      
+        }
+     
+      }
+
+    // useEffect(() => {
+    //     fecth().then();
+    // }, []);
 
     const handleSubmit = (e: any) => {
         e.preventDefault();

@@ -17,8 +17,11 @@ export function TestHome() {
         setDrawerOpen(open);
     };
 
-    const handleSaveEvaluation = (evaluation: any) => {
-        setEvaluaciones([...evaluaciones, { ...evaluation, id: Date.now() }]);
+    const handleSaveEvaluation = (data: any) => {
+
+        const du = evaluaciones.find(id => id == data.selectedQuizId) || evaluaciones[0];
+      
+        setEvaluaciones([...evaluaciones, { ...du, id: `${data.selectedQuizId * 9 ?? 90}`, name: data.name ?? ""}]);
         setDrawerOpen(false);
     };
 

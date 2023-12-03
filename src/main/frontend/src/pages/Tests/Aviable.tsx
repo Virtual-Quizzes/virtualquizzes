@@ -3,17 +3,32 @@ import { List, ListItem, ListItemText, TextField, Paper } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { pruebasMockeadas } from "./MockData";
+import EvaluationService from '@/web/services/evaluations.service';
 
 export const AviablePage = () => {
     const navigate = useNavigate();
-
     const evaluacionesIniciales = pruebasMockeadas;
 
+    const [evaluations, setEvaluations] = useState<any>(evaluacionesIniciales);
+    
     const [busqueda, setBusqueda] = useState('');
     const [evaluacionesFiltradas, setEvaluacionesFiltradas] = useState(evaluacionesIniciales);
 
+    // const fecth = async () => {
+    //     try {
+    //       const evas = await EvaluationService.get();
+    //       setEvaluations(evas);
+    //     } catch (error) {
+      
+    //     }
+     
+    //   }
+    //   useEffect(() => {
+    //     fecth().then();
+    // }, []);
+
     useEffect(() => {
-        const resultadosFiltrados = evaluacionesIniciales.filter(evaluacion =>
+        const resultadosFiltrados = evaluations.filter((evaluacion: any) =>
             evaluacion.main_text.toLowerCase().includes(busqueda.toLowerCase())
         );
         setEvaluacionesFiltradas(resultadosFiltrados);
