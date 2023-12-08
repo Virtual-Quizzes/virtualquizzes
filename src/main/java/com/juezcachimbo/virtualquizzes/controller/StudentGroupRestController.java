@@ -31,7 +31,7 @@ public class StudentGroupRestController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<StudentGroup> getGroupById(Long id) {
+    public ResponseEntity<StudentGroup> getGroupById(@PathVariable Long id) {
         Optional<StudentGroup> group = groupService.getGroupById(id);
         return group.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
